@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package com.jasper.test.grpc.grpcserver;
+
+import "google/protobuf/timestamp.proto";
+
+option java_generic_services = true;
+option java_multiple_files = false;
+option java_package = "com.jasper.test.grpc.grpcserver";
+
+service GRPCTestService {
+  rpc testConnectionTimeCost(TestRequest) returns (TestResponse);
+}
+
+message TestRequest {
+  google.protobuf.Timestamp sendTimeStamp = 1;
+}
+
+message TestResponse {
+  google.protobuf.Timestamp sendTimeStamp = 1;
+  google.protobuf.Timestamp receiveTimeStamp = 2;
+  google.protobuf.Timestamp processTimeCost = 3;
+}
